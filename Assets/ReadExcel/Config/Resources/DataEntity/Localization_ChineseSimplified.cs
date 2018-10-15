@@ -30,7 +30,6 @@ public class Localization_ChineseSimplified : ScriptableObject
     /// <returns></returns>
     public static Param GetData(int id )
     {
-         UnityEngine.Debug.Log("id:"+id);
         if (dicParams.ContainsKey(id))
         {
             return dicParams[id];

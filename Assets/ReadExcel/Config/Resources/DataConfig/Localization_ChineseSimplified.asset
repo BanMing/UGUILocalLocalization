@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 8
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -11,4 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead2ef7776f886c4fb70a39c42a53fd5, type: 3}
   m_Name: Localization_ChineseSimplified
   m_EditorClassIdentifier: 
-  Params: []
+  Params:
+  - id: 1
+    value: "\u4F60\u597D\uFF01"
+  - id: 2
+    value: "\u8C22\u8C22\uFF01"
+  - id: 3
+    value: "\u8BBE\u7F6E"
+  - id: 4
+    value: "\u97F3\u6548"
+  - id: 5
+    value: "\u97F3\u4E50"
+  - id: 6
+    value: "\u4EAE\u5EA6"

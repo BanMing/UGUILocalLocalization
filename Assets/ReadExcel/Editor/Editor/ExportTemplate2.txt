@@ -32,7 +32,10 @@ public class $ExportTemplate$ : AssetPostprocessor
 				}
 
 
-					Directory.CreateDirectory("Assets/ReadExcel/Config/Resources/DataConfig/ ");
+					if (!Directory.Exists("Assets/ReadExcel/Config/Resources/DataConfig/"))
+            	    {
+            	        Directory.CreateDirectory("Assets/ReadExcel/Config/Resources/DataConfig/");
+            	    }
                     var exportPath = "$ExportAssetDirectry$" + ".asset";
                     
                     // check scriptable object

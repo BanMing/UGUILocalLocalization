@@ -32,7 +32,10 @@ public class Localization_ChineseSimplified_Importer : AssetPostprocessor
 				}
 
 
-					Directory.CreateDirectory("Assets/ReadExcel/Config/Resources/DataConfig/ ");
+					if (!Directory.Exists("Assets/ReadExcel/Config/Resources/DataConfig/"))
+            	    {
+            	        Directory.CreateDirectory("Assets/ReadExcel/Config/Resources/DataConfig/");
+            	    }
                     var exportPath = "Assets/ReadExcel/Config/Resources/DataConfig/Localization_ChineseSimplified" + ".asset";
                     
                     // check scriptable object

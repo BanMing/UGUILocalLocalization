@@ -31,8 +31,12 @@ public class LocalizationMgr
         // }
         // Assembly.GetCallingAssembly().
         Debug.Log("Localization_" + Enum.Parse(typeof(SystemLanguage), language.ToString()).ToString());
-       var method= Type.GetType("Localization_" + Enum.Parse(typeof(SystemLanguage), language.ToString()).ToString()).GetMethod("GetData");
-       method.Invoke(null,new object []{1});
+        var method = Type.GetType("Localization_" + Enum.Parse(typeof(SystemLanguage), language.ToString()).ToString()).GetMethod("GetData");
+        var word=method.Invoke(null, new object[] { 1 });
+        // var info=word.GetType().GetMember();
+        // Debug.Log("info:"+info.Length);
+        // var value=info.GetValue(word,null);
+        Debug.Log("word:"+word.GetType().GetProperty("value").GetValue(word,null));
         if (RefreshHander != null)
         {
             RefreshHander();
