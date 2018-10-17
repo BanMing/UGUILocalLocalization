@@ -27,9 +27,6 @@ public class LocalizationMgr
     {
         if (!HasThisLanguageConfig(language))
         {
-            // Debug.LogError("No This Languge Config!");
-            // 
-            // return;
             language = SystemLanguage.English;
         }
 
@@ -88,11 +85,8 @@ public class LocalizationMgr
             return "";
         }
         var scriptName = "Localization_" + Enum.Parse(typeof(SystemLanguage), curLanguage.ToString()).ToString();
-        // Debug.Log(scriptName);
         var method = Type.GetType(scriptName).GetMethod("GetData");
         var word = method.Invoke(null, new object[] { id });
-        // Debug.Log("word:"+word);
-        // Debug.Log(word.GetType().GetField("value").GetValue(word));
         return word.GetType().GetField("value").GetValue(word).ToString();
     }
 
