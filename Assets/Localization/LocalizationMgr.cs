@@ -17,36 +17,83 @@ public class LocalizationMgr
         }
         internal static readonly LocalizationMgr instance = new LocalizationMgr();
     }
-    private ScriptableObject curWords;
 
+    private SystemLanguage curLanguage;
+
+    //刷新变量回调
     public Action RefreshHander;
+    //切换语言
     public void ChangeLanguage(SystemLanguage language)
     {
+        if (!HasThisLanguageConfig(language))
+        {
+            // Debug.LogError("No This Languge Config!");
+            // 
+            // return;
+            language = SystemLanguage.English;
+        }
 
-        // switch (language)
-        // {
-        //     case:
-
-        //     default:
-        // }
-        // Assembly.GetCallingAssembly().
-        Debug.Log("Localization_" + Enum.Parse(typeof(SystemLanguage), language.ToString()).ToString());
-        var method = Type.GetType("Localization_" + Enum.Parse(typeof(SystemLanguage), language.ToString()).ToString()).GetMethod("GetData");
-        var word=method.Invoke(null, new object[] { 1 });
-        // var info=word.GetType().GetMember();
-        // Debug.Log("info:"+info.Length);
-        // var value=info.GetValue(word,null);
-        Debug.Log("word:"+word.GetType().GetProperty("value").GetValue(word,null));
+        // PlayerPrefs.SetInt("AppLanguage", (int)language);
+        curLanguage = language;
         if (RefreshHander != null)
         {
             RefreshHander();
         }
 
     }
-    public string GetWordById(int id)
+
+    public void Init()
     {
-        //    var data= LocalizationConfig.Sheet.GetData(1);
-        return "";
+        ExcelDataInit.Init();
+        var language = PlayerPrefs.GetInt("AppLanguage", (int)Application.systemLanguage);
+        LocalizationMgr.Instance.ChangeLanguage((SystemLanguage)language);
+        // ChangeLanguage(SystemLanguage.English);
+    }
+    //检测是否有该语言版本
+    private bool HasThisLanguageConfig(SystemLanguage language)
+    {
+        try
+        {
+            var scriptName = "Localization_" + Enum.Parse(typeof(SystemLanguage), language.ToString()).ToString();
+            // Debug.Log("HasThisLanguageConfig:"+scriptName);
+            Type.GetType(scriptName).GetMethod("GetData");
+            return true;
+        }
+        catch (System.Exception)
+        {
+            Debug.LogError("No This Languge Config!");
+            return false;
+        }
+    }
+    public string GetWordByDirect(int id)
+    {
+        switch (curLanguage)
+        {
+            case SystemLanguage.ChineseSimplified:
+                return Localization_ChineseSimplified.GetData(id).value;
+            case SystemLanguage.English:
+                return Localization_English.GetData(id).value;
+            case SystemLanguage.Japanese:
+                return Localization_Japanese.GetData(id).value;
+            default:
+                Debug.LogError("No This Language Data!");
+                return "";
+        }
+    }
+    //根据id获得字符
+    public string GetWordByReflection(int id)
+    {
+        if (!HasThisLanguageConfig(curLanguage))
+        {
+            return "";
+        }
+        var scriptName = "Localization_" + Enum.Parse(typeof(SystemLanguage), curLanguage.ToString()).ToString();
+        // Debug.Log(scriptName);
+        var method = Type.GetType(scriptName).GetMethod("GetData");
+        var word = method.Invoke(null, new object[] { id });
+        // Debug.Log("word:"+word);
+        // Debug.Log(word.GetType().GetField("value").GetValue(word));
+        return word.GetType().GetField("value").GetValue(word).ToString();
     }
 
 }

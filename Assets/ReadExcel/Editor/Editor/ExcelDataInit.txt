@@ -2,8 +2,14 @@
 
 public class ExcelDataInit
 {
+    public static bool isInit;
     public static void Init()
     {
+        if(isInit)
+        {
+            return;
+        }
+        isInit=true;
 		$ResourcesScriptObject$
         Resources.UnloadUnusedAssets();
     }

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Params:
   - id: 1
-    japanese: "\u3053\u3093\u306B\u3061\u306F!"
+    value: "\u3053\u3093\u306B\u3061\u306F!"
   - id: 2
-    japanese: "\u3042\u308A\u304C\u3068\u3046\uFF01"
+    value: "\u3042\u308A\u304C\u3068\u3046\uFF01"
   - id: 3
-    japanese: "\u8A2D\u5B9A"
+    value: "\u8A2D\u5B9A"
   - id: 4
-    japanese: "\u52B9\u679C\u97F3"
+    value: "\u52B9\u679C\u97F3"
   - id: 5
-    japanese: "\u97F3\u697D"
+    value: "\u97F3\u697D"
   - id: 6
-    japanese: "\u660E\u308B\u3055"
+    value: "\u660E\u308B\u3055"

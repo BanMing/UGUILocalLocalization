@@ -19,7 +19,7 @@ public class Localization_Japanese : ScriptableObject
         /// <summary>
         /// 日语
         /// </summary>
-        public  string japanese;
+        public  string value;
 
 	}
 

@@ -69,7 +69,7 @@ public class Localization_English_Importer : AssetPostprocessor
                         var p = new Localization_English.Param();
 			
                         cell = row.GetCell(0); p.id = (int)(cell == null ? 0 : cell.NumericCellValue);
-                        cell = row.GetCell(1); p.english = (cell == null ? "" : cell.StringCellValue);
+                        cell = row.GetCell(1); p.value = (cell == null ? "" : cell.StringCellValue);
 
                         data.Params.Add(p);
                     }

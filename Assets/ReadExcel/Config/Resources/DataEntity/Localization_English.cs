@@ -19,7 +19,7 @@ public class Localization_English : ScriptableObject
         /// <summary>
         /// 英语
         /// </summary>
-        public  string english;
+        public  string value;
 
 	}
 
